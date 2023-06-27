@@ -49,7 +49,7 @@ class GreeterServer() {
     val service: HttpRequest => Future[HttpResponse] = GreeterServiceHandler.withServerReflection( GreeterServiceImpl())
 
     val bound: Future[Http.ServerBinding] = Http()
-      .newServerAt(interface = "127.0.0.1", port = 9101)
+      .newServerAt(interface = "0.0.0.0", port = 9101)
       .bind(service)
       .map(_.addToCoordinatedShutdown(hardTerminationDeadline = 10.seconds))
 
